@@ -17,7 +17,6 @@ echo OPENAI_API_KEY=<YOUR_API_KEY_HERE> >> .env
 
 Install dependencies & start the dev server
 ```sh
-pnpm i && pnpm run dev
 npm i && node server.js
 ```
 
