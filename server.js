@@ -15,15 +15,15 @@ const openai = new OpenAIApi(configuration);
 const app = express();
 app.use(express.static('public'));
 
-/*
+
 const corsOptions = {
-  origin: 'https://your-domain.com', // Reemplaza esto con el dominio que deseas permitir
+  origin: 'https://kitty.dev-ja.cyou/',
   optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
-*/
-app.use(cors());
+
+//app.use(cors());
 app.use(bodyParser.json());
 
 // Agregamos un array para almacenar la conversación

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addChatMessage({ text: message, sender: 'user' });
 
-    const response = await fetch('http://localhost:3000/chat', {
+    const response = await fetch('https://kitty.dev-ja.cyou/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message }),
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 	function getHistory() {
-		fetch('http://localhost:3000/history')
+		fetch('https://kitty.dev-ja.cyou/history')
 			.then(response => response.json())
 			.then(data => {
 				data.history.forEach(message => {
