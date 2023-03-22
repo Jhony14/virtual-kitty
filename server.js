@@ -26,18 +26,12 @@ app.use(cors(corsOptions));
 //app.use(cors());
 app.use(bodyParser.json());
 
-// Agregamos un array para almacenar la conversación
-let conversationHistory = [];
-
 app.post('/chat', async (req, res) => {
-  const { message } = req.body;
+  const { message, conversationHistory } = req.body;
 
   if (!message) {
     return res.status(400).json({ error: 'Por favor, envía un mensaje.' });
   }
-
-  // Agregamos el mensaje del usuario al historial
-  conversationHistory.push(`Usuario: ${message}`);
 
   // Preparamos el prompt incluyendo el historial de la conversación
   const prompt = conversationHistory.join('\n') + '\nKitty:';
@@ -54,18 +48,11 @@ app.post('/chat', async (req, res) => {
 
     const chatGPTResponse = response.data.choices[0].text.trim();
 
-    // Agregamos la respuesta del chatbot al historial
-    conversationHistory.push(`Kitty: ${chatGPTResponse}`);
-
     res.json({ response: chatGPTResponse });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error al procesar tu mensaje.' });
   }
-});
-
-app.get('/history', (req, res) => {
-	res.json({ history: conversationHistory });
 });
 
 const PORT = process.env.PORT || 3000;
