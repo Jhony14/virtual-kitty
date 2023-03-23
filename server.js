@@ -47,7 +47,7 @@ app.post('/chat', async (req, res) => {
     });
 
     const chatGPTResponse = response.data.choices[0].text.trim();
-    saveLogs(prompt);
+    saveLogs(prompt + chatGPTResponse + "\n******\n");
     res.json({ response: chatGPTResponse });
   } catch (error) {
     console.error('Error al procesar tu mensaje:', error);
@@ -72,7 +72,7 @@ function saveLogs(data, isError = false) {
   }
   const filePath = path.join(logsFolderPath, fileName);
 
-  fs.writeFile(filePath, data, (err) => {
+  fs.writeFile(filePath, data, { flag: 'a' }, (err) => {
     if (err) {
       console.error('Error al guardar el archivo:', err);
     }
