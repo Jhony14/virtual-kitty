@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatForm = document.getElementById('chatForm');
   const chatInput = document.getElementById('chatInput');
   const chatMessages = document.getElementById('chatMessages');
-
-  // Agregamos un array para almacenar la conversación en el cliente
+	let Username = localStorage.getItem('Username') || "Usuario";
   let conversationHistory = [];
+	
 	displayHistory();
 
   chatForm.addEventListener('submit', async (event) => {
@@ -13,11 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const message = chatInput.value.trim();
     if (!message) return;
 
-    const userMessage = `Usuario: ${message}`;
+    const userMessage = `${Username}: ${message}`;
     addChatMessage({ text: userMessage, sender: 'user' });
     conversationHistory.push(userMessage);
 
-    // Enviar el historial de la conversación junto con el mensaje
 		const response = await fetch('https://kitty.dev-ja.cyou/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -56,5 +55,17 @@ document.addEventListener('DOMContentLoaded', () => {
 			conversationHistory = history;
 		}
 	}
+
+	document.querySelector('.clear-button').addEventListener('click', function() {
+		localStorage.removeItem('conversationHistory');
+		const chatMessages = document.querySelector('#chatMessages');
+		conversationHistory = [];
+		chatMessages.innerHTML = '';
+	});
+
+	document.querySelector('#nameInput').addEventListener('input', function() {
+		Username = document.querySelector('#nameInput').value;
+		localStorage.setItem('Username', Username);
+	});
 
 });

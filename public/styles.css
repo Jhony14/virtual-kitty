@@ -19,17 +19,37 @@ body {
 }
 
 h1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #3C3C3C;
   text-align: center;
-  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #3C3C3C;
+}
+
+#nameInput {
+  width: 95%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
 }
 
 .chat-messages {
-  height: 300px;
-  overflow-y: auto;
-  margin-bottom: 10px;
-  border: 1px solid #e0e0e0;
+	height: 400px;
+  overflow-y: scroll;
   padding: 10px;
+  margin-bottom: 20px;
+  background-color: #F3F3F3;
   border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .chat-form {
@@ -44,24 +64,30 @@ h1 {
   outline: none;
 }
 
-.chat-form button {
-  background-color: #007bff;
-  color: white;
+.chat-form button[type="submit"]{
+	background-color: #007bff;
+  color: #ffffff;
   font-weight: bold;
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
   margin-left: 5px;
+  font-size: 16px;
+  transition: background-color 0.2s;
 }
 
-.chat-form button:hover {
-  background-color: #0056b3;
+.chat-form button[type="submit"]:hover {
+	background-color: #0056b3;
 }
 
 .chat-message {
 	font-weight: bold;
+	background-color: #FFF;
+  padding: 10px;
   margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .chat-message.user {
@@ -74,4 +100,41 @@ h1 {
 
 .chat-message.history {
   color: #155e33;
+}
+
+button.clear-button {
+  background-color: #f44336;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  cursor: pointer;
+	font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+button.clear-button:hover {
+  background-color: #ff6659;
+}
+
+/* Path: public/index.html */
+
+@media only screen and (max-width: 500px) {
+  .chat-container {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  input[type="text"],
+  textarea {
+    font-size: 14px;
+  }
+  button[type="submit"],
+  button.clear-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
 }
