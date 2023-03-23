@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addChatMessage({ text: userMessage, sender: 'user' });
     conversationHistory.push(userMessage);
 
-		// const response = await fetch('https://kitty.dev-ja.cyou/chat', {
-		const response = await fetch('http://192.168.1.61:3000/chat', {
+		const response = await fetch('https://kitty.dev-ja.cyou/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message, conversationHistory }),
