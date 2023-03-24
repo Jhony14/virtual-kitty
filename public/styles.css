@@ -130,6 +130,19 @@ button.clear-button:hover {
   background-color: #ff6659;
 }
 
+#voiceBtn {
+	background-color: #008CBA;
+	color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	margin-left: 10px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+  transition: background-color 0.2s;
+}
+
 @media only screen and (max-width: 500px) {
   .chat-container {
     padding: 10px;

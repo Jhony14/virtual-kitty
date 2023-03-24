@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatForm = document.getElementById('chatForm');
   const chatInput = document.getElementById('chatInput');
   const chatMessages = document.getElementById('chatMessages');
+	const voiceBtn = document.getElementById('voiceBtn');
+	const recognition = new window.webkitSpeechRecognition();
+	const synth = window.speechSynthesis;
+
 	let Username = localStorage.getItem('Username') || "Usuario";
   let conversationHistory = [];
 	
@@ -17,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     addChatMessage({ text: userMessage, sender: 'user' });
     conversationHistory.push(userMessage);
 
-		const response = await fetch('https://kitty.dev-ja.cyou/chat', {
+		//const response = await fetch('https://kitty.dev-ja.cyou/chat', {
+		const response = await fetch('http://localhost:3000/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message, conversationHistory }),
@@ -45,6 +50,33 @@ document.addEventListener('DOMContentLoaded', () => {
     chatMessages.appendChild(messageElement);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
+
+	voiceBtn.addEventListener('click', () => {
+		console.log('Voice activated');
+		recognition.start();
+	});
+	
+	recognition.onresult = event => {
+		const transcript = event.results[0][0].transcript;
+		console.log(transcript);
+		chatInput.value = transcript;
+	};
+
+	recognition.onerror = event => {
+		console.log(event.error);
+		console.log(event);
+		console.log('Error');
+		console.error(event.error);
+	};
+
+	function speak(text) {
+		const utterance = new SpeechSynthesisUtterance(text);
+		synth.speak(utterance);
+	}
+
+	recognition.onend = () => {
+		console.log('Recognition ended');
+	};
 
 	function displayHistory() {
 		const history = JSON.parse(localStorage.getItem('conversationHistory'));

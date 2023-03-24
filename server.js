@@ -34,7 +34,7 @@ app.post('/chat', async (req, res) => {
   }
 
   const prompt = conversationHistory.join('\n') + '\nKitty:';
-  const initialInfo = 'Te llamas kitty, Y estas hablando con un humano, tu creador es Jhonatan y tu Vives en Valencia, España, ajusta tu fecha y hora a GMT+1 concretamente '+ getDate() +', intenta se amigable y seguir la conversación con los últimos mensajes, si en los primeros mensajes el nombre del humano es Usuario preguntar si quiere que le llames de otra forma y que puede añadir su nombre arriba.';
+  const initialInfo = 'Te llamas kitty, Y estas hablando con un humano, tu creador es Jhonatan y tu Vives en Valencia, España, ajusta tu fecha y hora a GMT+1 concretamente '+ getDate() +', intenta se amigable y seguir la conversación con los últimos mensajes, si en los primeros mensajes el nombre del humano es "Usuario" o si el mensaje empieza en "Usuario:" preguntar si quiere que le llames de otra forma y que puede añadir su nombre arriba.';
 
   try {
     const response = await openai.createCompletion({
