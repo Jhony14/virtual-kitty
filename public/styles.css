@@ -92,10 +92,22 @@ label {
 
 .chat-message.user {
   color: #007bff;
+	background-color: #4CAF50;
+	float: right;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	max-width: 80%;
 }
 
 .chat-message.chatbot {
   color: #a83232;
+	background-color: #cccccc;
+	float: left;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	max-width: 80%;
 }
 
 .chat-message.history {
@@ -117,8 +129,6 @@ button.clear-button {
 button.clear-button:hover {
   background-color: #ff6659;
 }
-
-/* Path: public/index.html */
 
 @media only screen and (max-width: 500px) {
   .chat-container {
